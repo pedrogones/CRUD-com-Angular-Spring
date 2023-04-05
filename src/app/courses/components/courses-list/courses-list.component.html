@@ -1,0 +1,58 @@
+<mat-table [dataSource]="courses">
+
+  <!--- Note that these columns can be defined in any order.
+  The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Curso </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+
+  </ng-container>
+  <!-- name Column -->
+  <ng-container matColumnDef="category">
+    <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.category}}
+      <mat-icon aria-hidden="false" aria-label="Categoria do Curso"> {{element.category | category}} </mat-icon>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="_id">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+  </ng-container>
+
+
+  <!-- Column action-->
+  <ng-container matColumnDef="actions" >
+    <mat-header-cell  *matHeaderCellDef class="action-column-header">
+      <button mat-mini-fab color="primary" aria-label="ADD courses"  (click)="onAdd()" style="outline: none">
+        <mat-icon >add</mat-icon>
+
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let course" class="action-column">
+      <button mat-icon color="accent" aria-label="Edit courses">
+        <mat-icon (click)="onEdit(course)" >edit</mat-icon>
+      </button>
+
+      <button mat-mini-fab color="primary" aria-label="Remove Courses"  (click)="onDelete(course)" style="outline: none">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="aulas">
+    <mat-header-cell *matHeaderCellDef> Aulas </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.aulas}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+
+</mat-table>
